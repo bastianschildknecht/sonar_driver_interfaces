@@ -1,10 +1,12 @@
-# Configuration data for an imaging sonar system which uses an array of
+# Data to change the configuration of an imaging sonar system which uses an array of
 # multiple acoustic transducers to emit sound waves and measure the
 # reflection of sound waves in order to generate an image.
 # This message is not appropriate for simpler sonar systems like
 # depth sounders or side-scan sonars.
-# This message is used by the sonar to report the current state of the
-# system.
+# The fields of this message describe the requested configuration.
+# The sonar system may choose to ignore some or all of these fields if
+# the requested configuration is not supported. It may also choose to use
+# a different similar configuration.
 
 # Fire mode constants
 uint8 FIRE_MODE_LOW_FREQUENCY = 1
@@ -42,36 +44,23 @@ uint8 fire_mode             # The mode of the sonar system.
                             # 1: Low frequency
                             # 2: High frequency
 
-float64 frequency           # The frequency of the sound waves emitted by the
-                            # sonar system. [Hz]
+uint8 ping_rate             # The rate at which the sonar system should
+                            # sample [Hz].
 
-uint8 ping_rate             # The rate at which the sonar system sends out
-                            # pings [Hz].
-
-uint16 beam_count           # The number of beams in the sonar system.
-float64 beam_separation     # The seperation between adjacent beams [degrees].
-
-float64 min_range           # The minimum range [m].
-float64 max_range           # The maximum range [m].
-float64 current_range       # The currently set range [m].
-float64 range_resolution    # The range resolution [m].
-uint32 range_count          # The number of range bins.
-
-float64 horz_fov            # The horizontal field of view [degrees].
-float64 vert_fov            # The vertical field of view [degrees].
-float64 angular_resolution  # The angular resolution [degrees].
+float64 range               # The requested range [m].
 
 float64 gain                # The gain of the sonar system [%].
-bool gain_assist            # Whether the gain is assisted or not.
+
+bool gain_assist            # Whether the system should assist in the
+                            # gain setting.
 
 uint8 gamma                 # The gamma correction of the sonar system.
                             # 0 and 255 are gamma 1.0.
                             # 127 is gamma 0.5.
 
 float64 speed_of_sound      # The speed of sound [m/s]
+
 float64 salinity            # The salinity of the water [ppt]
-float64 temperature         # The temperature of the water [degC]
-float64 pressure            # The pressure of the water [bar]
 
 uint8 net_speed_limit       # The network speed limit [Mbps].
                             # 0 or 255 means no limit.
