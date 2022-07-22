@@ -24,7 +24,7 @@ find_package(rosidl_default_generators REQUIRED)
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/SonarConfiguration.msg"
   "msg/SonarConfigurationChange.msg"
-  DEPENDENCIES builtin_interfaces
+  DEPENDENCIES std_msgs builtin_interfaces
 )
 
 if(BUILD_TESTING)
